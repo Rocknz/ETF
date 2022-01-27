@@ -7,14 +7,16 @@ def main():
     google_drive = GoogleDrive()
 
     with open("output_ETF.csv", "w", encoding="utf-8") as fp:
-        ticker_name_list = ['VOO', 'IEF', 'TLT', 'IAU', 'PDBC']
-        asset_cnt = [1, 1, 1, 1, 1]
-        column = 'B'
-        row = 15
-        for asset in asset_cnt:
-            position = column + str(row)
-            row += 1
-            google_drive.update(position, asset)
+        ticker_column = 'C'
+        ticker_row = 1
+        position = ticker_column + str(ticker_row)
+        ticker_cnt = int(google_drive.read(position))
+        ticker_name_list = []
+        for i in range(ticker_cnt):
+            ticker_row += 1
+            position = ticker_column + str(ticker_row)
+            ticker_name = str(google_drive.read(position))
+            ticker_name_list.append(ticker_name)
 
         column = 'C'
         row = 15

@@ -20,3 +20,7 @@ class GoogleDrive:
 
     def update(self, position, data):
         self.worksheet.update_acell(position, data)
+
+    def read(self, position):
+        cell_data = self.worksheet.acell(position).value
+        return cell_data
